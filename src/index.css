@@ -68,6 +68,45 @@ li {
   text-decoration: none;
 }
 
+.d-flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-space {
+  justify-content: space-between;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.p-3 {
+  padding: 3px;
+}
+
+.pe-10 {
+  padding-right: 10px;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.input-login {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid rgb(210, 207, 207);
+}
+
 .avatar {
   height: 50px;
   border-radius: 25px;

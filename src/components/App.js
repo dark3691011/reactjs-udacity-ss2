@@ -6,6 +6,7 @@ import LoadingBar from "react-redux-loading-bar";
 import NewTweet from "./NewTweet";
 import TweetPage from "./TweetPage";
 import Nav from "./Nav";
+import Login from "./Login";
 import { Routes, Route } from "react-router-dom";
 
 const App = (props) => {
@@ -17,14 +18,15 @@ const App = (props) => {
     <Fragment>
       <LoadingBar />
       <div className="container">
-        <Nav />
+        <Login />
+        {/* <Nav />
         {props.loading === true ? null : (
           <Routes>
             <Route path="/" exact element={<Dashboard />} />
             <Route path="/tweet/:id" element={<TweetPage />} />
             <Route path="/new" element={<NewTweet />} />
           </Routes>
-        )}
+        )} */}
       </div>
     </Fragment>
   );
