@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Nav = () => {
   return (
     <nav className="nav d-flex justify-space">
-      <ul>
+      <ul className="ms-2">
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -14,7 +14,7 @@ const Nav = () => {
           <Link to="/new">New</Link>
         </li>
       </ul>
-      <div className="d-flex justify-center align-items-center">
+      <div className="d-flex justify-center align-items-center me-2">
         <div className="d-flex pe-10">
           <img />
           <p>Name</p>

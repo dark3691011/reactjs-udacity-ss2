@@ -47,6 +47,10 @@ a {
   font-weight: bold;
 }
 
+.nav {
+  border-bottom: 1px solid rgb(111, 111, 111);
+}
+
 .nav ul {
   display: flex;
   flex-direction: row;
@@ -86,6 +90,14 @@ li {
 
 .align-items-center {
   align-items: center;
+}
+
+.ms-2{
+  margin-left: 2rem;
+}
+
+.me-2{
+  margin-right: 2rem;
 }
 
 .p-3 {

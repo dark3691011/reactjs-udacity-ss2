@@ -17,6 +17,7 @@ const App = (props) => {
   return (
     <Fragment>
       <LoadingBar />
+      <Nav />
       <div className="container">
         <Login />
         {/* <Nav />
