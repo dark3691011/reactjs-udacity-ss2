@@ -1,17 +1,17 @@
+import { hideLoading, showLoading } from "react-redux-loading-bar";
 import { getInitialData } from "../utils/api";
-import { receiveUsers } from "./users";
-import { receiveTweets } from "./tweets";
+import {receiveQuestions} from './questions'
 import { setAuthedUser } from "./authedUser";
-import { showLoading, hideLoading } from "react-redux-loading-bar";
+import { receiveUsers } from "./users";
 
 const AUTHED_ID = "tylermcginnis";
 
 export function handleInitialData() {
   return (dispatch) => {
     dispatch(showLoading());
-    return getInitialData().then(({ users, tweets }) => {
+    return getInitialData().then(({ users, questions }) => {
       dispatch(receiveUsers(users));
-      dispatch(receiveTweets(tweets));
+      dispatch(receiveQuestions(questions));
       dispatch(setAuthedUser(AUTHED_ID));
       dispatch(hideLoading());
     });
