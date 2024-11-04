@@ -230,8 +230,56 @@ li {
 
 .poll-item {
   border: 1px solid #ccc;
-  border-radius: 20px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  width: 250px;
+}
+.poll-item > p:first-child {
+  font-weight: bold;
+  margin-bottom: 0px;
+  margin-top: 8px;
+}
+.poll-item > p:nth-child(2) {
+  margin-top: 1px;
+  color: #aaa5a5;
+  font-size: small;
+}
+.poll-item > div {
+  color: #9bff93;
+  border: 1px solid #9bff93;
+  width: 85%;
+  line-height: 1.8;
+  border-radius: 5px;
+  text-align: center;
+  margin: 20px 0px 10px 0px;
+}
+.poll-item > div:hover {
+  cursor: pointer;
+  background-color: #f5fdf4;
+}
+
+.home-title {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+
+.home-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.home-items {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
 }

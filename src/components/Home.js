@@ -1,9 +1,8 @@
 import { useNavigate, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import PollItem from './PollItem'
+import PollItem from "./PollItem";
 
 const Home = (props) => {
-
   const navigate = useNavigate();
 
   const toParent = (e, id) => {
@@ -14,14 +13,16 @@ const Home = (props) => {
 
   return (
     <div>
-      <div>
-        <h2>New Questions</h2>
-        <div>
-        {props.questionIds.map((id) => (
-          <li key={id}>
-            <PollItem id={id} />
-          </li>
-        ))}
+      <div className="home-board">
+        <div className="home-title">
+          <h2>New Questions</h2>
+        </div>
+        <div className="home-items">
+          {props.questionIds.map((id) => (
+            <li key={id}>
+              <PollItem id={id} />
+            </li>
+          ))}
         </div>
       </div>
     </div>
