@@ -92,11 +92,11 @@ li {
   align-items: center;
 }
 
-.ms-2{
+.ms-2 {
   margin-left: 2rem;
 }
 
-.me-2{
+.me-2 {
   margin-right: 2rem;
 }
 
@@ -121,11 +121,17 @@ li {
 
 .login-button {
   background-color: #f0f0f0; /* Light gray background */
-  border: 1px solid #ccc; /* Gray border */
+  /* border: 1px solid #ccc; Gray border */
   border-radius: 5px; /* Rounded corners */
   padding: 10px 20px; /* Padding around the text */
-  color: #333; /* Dark gray text color */
+  color: #ccc; /* Dark gray text color */
   cursor: pointer; /* Pointer cursor on hover */
+  font-weight: bold;
+}
+
+.login-button:hover {
+  background-color: #aaa5a5; /* Light gray background */
+  color: #333;
 }
 
 .avatar {
@@ -220,4 +226,12 @@ li {
   margin-top: 10px;
   font-size: 20px;
   color: #c3392a;
+}
+
+.poll-item {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
