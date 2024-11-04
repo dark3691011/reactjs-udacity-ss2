@@ -1,6 +1,9 @@
 import { useNavigate, Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PollItem from './PollItem'
 
 const Home = (props) => {
+
   const navigate = useNavigate();
 
   const toParent = (e, id) => {
@@ -14,19 +17,21 @@ const Home = (props) => {
       <div>
         <h2>New Questions</h2>
         <div>
-          <div>
-            <p>mtsamis</p>
-            <p>
-              4:11:PM | 11/23/2011
-            </p>
-            <div>
-              show
-            </div>
-          </div>
+        {props.questionIds.map((id) => (
+          <li key={id}>
+            <PollItem id={id} />
+          </li>
+        ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default Home;
+const mapStateToProps = ({ questions }) => ({
+  questionIds: Object.keys(questions).sort(
+    (a, b) => questions[b].timestamp - questions[a].timestamp
+  ),
+});
+
+export default connect(mapStateToProps)(Home);
