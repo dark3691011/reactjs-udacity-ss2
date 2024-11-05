@@ -283,3 +283,7 @@ li {
   align-items: center;
   flex-wrap: wrap;
 }
+
+.active-nav {
+  border-bottom: 1px solid #0000;
+}
