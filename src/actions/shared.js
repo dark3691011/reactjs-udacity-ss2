@@ -17,3 +17,24 @@ export function handleInitialData() {
     });
   };
 }
+
+export function handleSaveQuestionAnswer({
+  authedUser, qid, answer
+}){
+  return (dispatch) => {
+    dispatch(showLoading());
+    return saveQuestionAnswer({
+      authedUser, qid, answer
+    }).then((_res) => {
+      dispatch(toggleQuestion({
+        id: qid,
+        authedUser, answer
+      }));
+      dispatch(toggleUser({
+        qid,
+        authedUser, answer
+      }));
+      dispatch(hideLoading());
+    });
+  }
+}

@@ -36,12 +36,12 @@ export function receiveQuestions(questions) {
   };
 }
 
-function toggleQuestion({ id, authedUser, hasLiked }) {
+function toggleQuestion({ id, authedUser, answer }) {
   return {
     type: TOGGLE_QUESTION,
     id,
     authedUser,
-    hasLiked,
+    answer,
   };
 }
 
