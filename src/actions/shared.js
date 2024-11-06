@@ -1,8 +1,8 @@
 import { hideLoading, showLoading } from "react-redux-loading-bar";
-import { getInitialData } from "../utils/api";
-import {receiveQuestions} from './questions'
+import { getInitialData, saveQuestionAnswer } from "../utils/api";
+import { receiveQuestions, toggleQuestion } from "./questions";
 import { setAuthedUser } from "./authedUser";
-import { receiveUsers } from "./users";
+import { receiveUsers, toggleUser } from "./users";
 
 const AUTHED_ID = "tylermcginnis";
 
@@ -18,23 +18,29 @@ export function handleInitialData() {
   };
 }
 
-export function handleSaveQuestionAnswer({
-  authedUser, qid, answer
-}){
+export function handleSaveQuestionAnswer({ authedUser, qid, answer }) {
   return (dispatch) => {
     dispatch(showLoading());
     return saveQuestionAnswer({
-      authedUser, qid, answer
+      authedUser,
+      qid,
+      answer,
     }).then((_res) => {
-      dispatch(toggleQuestion({
-        id: qid,
-        authedUser, answer
-      }));
-      dispatch(toggleUser({
-        qid,
-        authedUser, answer
-      }));
+      dispatch(
+        toggleQuestion({
+          id: qid,
+          authedUser,
+          answer,
+        })
+      );
+      dispatch(
+        toggleUser({
+          qid,
+          authedUser,
+          answer,
+        })
+      );
       dispatch(hideLoading());
     });
-  }
+  };
 }

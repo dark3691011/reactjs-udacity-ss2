@@ -29,10 +29,13 @@ const Home = (props) => {
   );
 };
 
-const mapStateToProps = ({ questions }) => ({
-  questionIds: Object.keys(questions).sort(
-    (a, b) => questions[b].timestamp - questions[a].timestamp
-  ),
-});
+const mapStateToProps = ({ questions }) => {
+  console.log(questions);
+  return {
+    questionIds: Object.keys(questions).sort(
+      (a, b) => questions[b].timestamp - questions[a].timestamp
+    ),
+  };
+};
 
 export default connect(mapStateToProps)(Home);

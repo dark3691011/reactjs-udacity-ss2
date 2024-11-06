@@ -9,7 +9,8 @@ const PollItem = (props) => {
     <div className="poll-item">
       <p>{author}</p>
       <p>{time}</p>
-      <div>show</div>
+
+      <Link to={`poll/${props.id}`}>show</Link>
     </div>
   );
 };

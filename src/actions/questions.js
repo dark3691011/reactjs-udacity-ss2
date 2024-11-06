@@ -35,7 +35,7 @@ export function receiveQuestions(questions) {
   };
 }
 
-function toggleQuestion({ id, authedUser, answer }) {
+export function toggleQuestion({ id, authedUser, answer }) {
   return {
     type: TOGGLE_QUESTION,
     id,

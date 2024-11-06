@@ -248,16 +248,16 @@ li {
   color: #aaa5a5;
   font-size: small;
 }
-.poll-item > div {
-  color: #9bff93;
-  border: 1px solid #9bff93;
+.poll-item > a {
+  color: #64ad88;
+  border: 1px solid #64ad88;
   width: 85%;
   line-height: 1.8;
   border-radius: 5px;
   text-align: center;
   margin: 20px 0px 10px 0px;
 }
-.poll-item > div:hover {
+.poll-item > a:hover {
   cursor: pointer;
   background-color: #f5fdf4;
 }
@@ -287,4 +287,51 @@ li {
 
 .active-nav {
   border-bottom: 2px solid #000000;
+}
+
+.poll-img {
+  width: 300px;
+  height: 300px;
+}
+
+.poll {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.poll > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.poll-option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px;
+  width: 40%;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+}
+
+.poll-option > div:first-child {
+  padding: 10px;
+}
+.poll-option > div:nth-child(2) {
+  padding: 10px 0px 10px 0px;
+  background-color: #7ebca5;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+}
+.poll-option > div:nth-child(2):hover {
+  cursor: pointer;
+  background-color: #639381;
 }
