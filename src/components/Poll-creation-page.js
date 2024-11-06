@@ -1,6 +1,9 @@
 import { connect } from "react-redux";
+import { handleAddQuestion } from "../actions/questions";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const PollCreationPage = ({dispatch}) => {
+const PollCreationPage = ({ dispatch }) => {
   const navigate = useNavigate();
   const [firstText, setFirstText] = useState("");
   const [secondText, setSecondText] = useState("");
@@ -31,14 +34,12 @@ const PollCreationPage = ({dispatch}) => {
       <form onSubmit={handleSubmit}>
         <div>
           <label>First option</label>
-          <input value={firstText}  
-          onChange={handleFirstTextChange}/>
+          <input value={firstText} onChange={handleFirstTextChange} />
         </div>
-        
+
         <div>
           <label>Seconds option</label>
-          <input value={secondText}  
-          onChange={handleSecondTextChange}/>
+          <input value={secondText} onChange={handleSecondTextChange} />
         </div>
 
         <button type="submit">Submit</button>
