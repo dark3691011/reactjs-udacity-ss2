@@ -7,6 +7,17 @@ export default function users(state = {}, action) {
         ...state,
         ...action.users,
       };
+      case TOGGLE_USER:
+        return {
+          ...state,
+          [action.authedUser]:{
+            ...state[authedUser],
+            answers: {
+              ...state[authedUser].answers,
+              [action.qid]: action.answer
+            }
+          },
+        };
     default:
       return state;
   }
