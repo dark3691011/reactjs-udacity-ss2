@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Routes, Route, useLocation } from "react-router-dom";
 
-const Nav = () => {
+const Nav = ({user}) => {
   const location = useLocation();
   return (
     <nav className="nav d-flex justify-space">
@@ -18,8 +18,8 @@ const Nav = () => {
       </ul>
       <div className="d-flex justify-center align-items-center me-2">
         <div className="d-flex pe-10">
-          <img />
-          <p>Name</p>
+          <img src={user.avatarURL} />
+          <p>{user.name}</p>
         </div>
         <div>Logout</div>
       </div>
@@ -27,4 +27,12 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+
+const mapStateToProps = ({ authedUser, users }) => {
+  const user = users[authedUser];
+  return {
+    user
+  };
+};
+
+export default connect(mapStateToProps)(Nav);
