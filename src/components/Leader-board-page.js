@@ -1,13 +1,6 @@
-import { useNavigate, Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const LeaderBoardPage = (props) => {
-  const navigate = useNavigate();
-
-  const toParent = (e, id) => {
-    e.preventDefault();
-
-    navigate(`/tweet/${id}`);
-  };
 
   return (
     <div>
@@ -17,24 +10,41 @@ const LeaderBoardPage = (props) => {
           <th>Answered</th>
           <th>Created</th>
         </tr>
-        <tr>
-          <td>
-            <div>
-              <img/>
-              <div>Serah A</div>
-              <div>serahedo</div>
-            </div>
-          </td>
-          <td>
-            12
-          </td>
-          <td>
-            3
-          </td>
-        </tr>
+        {
+          props.listUsers?.map(e => {
+            return (
+              <tr>
+                <td>
+                  <div>
+                    <img src={e.avatarURL}/>
+                    <div>{e.name}</div>
+                    <div>{e.id}</div>
+                  </div>
+                </td>
+                <td>
+                  {e.answers?.length}
+                </td>
+                <td>
+                {e.questions?.length}
+                </td>
+              </tr>
+            )
+          })
+        }
       </table>
     </div>
   );
 };
 
-export default LeaderBoardPage;
+const mapStateToProps = ({ authedUser, users, questions }) => {
+
+  const listUsers = Object.keys.map(e => {
+    return users[e]
+  })
+  return {
+    authedUser,
+    listUsers,
+  };
+};
+
+export default connect(mapStateToProps)(LeaderBoardPage);
