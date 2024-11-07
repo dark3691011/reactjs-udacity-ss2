@@ -15,6 +15,10 @@ export function getInitialData () {
   }))
 }
 
+export function login({userName, password}){
+  return _login({userName, password})
+}
+
 export function saveQuestion (info) {
   return _saveQuestion(info)
 }

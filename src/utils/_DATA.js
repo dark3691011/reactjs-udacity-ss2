@@ -147,6 +147,18 @@ export function _getQuestions() {
   });
 }
 
+export function _login({userName, password}){
+  return new Promise((res) => {
+    let result = false;
+    if(users[userName].password === password){
+      result = true;
+    }
+    setTimeout(() => {
+      res(result);
+    })
+  })
+}
+
 function formatQuestion({ optionOneText, optionTwoText, author }) {
   return {
     id: generateUID(),
