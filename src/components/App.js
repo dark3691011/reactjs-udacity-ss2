@@ -8,13 +8,20 @@ import Home from "./Home";
 import Poll from "./Poll";
 import PollCreationPage from "./Poll-creation-page";
 import LeaderBoardPage from "./Leader-board-page";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation,useNavigate } from "react-router-dom";
 
 const App = (props) => {
   const location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     props.dispatch(handleInitialData());
   }, []);
+  useEffect(() => {
+    // Redirect to login if not authenticated and not already on the login page
+    if (!props.authedUser && location.pathname !== "/login") {
+      navigate("/login");
+    }
+  }, [props.authedUser, location.pathname, navigate]);
 
   return (
     <Fragment>
@@ -36,7 +43,8 @@ const App = (props) => {
 };
 
 const mapStateToProps = ({ authedUser }) => ({
-  loading: null //authedUser === null,
+  authedUser,
+  // loading: authedUser === null, // Consider loading state if authedUser is being set asynchronously
 });
 
 export default connect(mapStateToProps)(App);

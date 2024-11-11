@@ -5,15 +5,16 @@ const LeaderBoardPage = (props) => {
   return (
     <div>
       <table>
-        <tr>
+      <thead><tr>
           <th>Users</th>
           <th>Answered</th>
           <th>Created</th>
-        </tr>
-        {
+        </tr></thead>
+        
+        <tbody>{
           props.listUsers?.map(e => {
             return (
-              <tr>
+              <tr key={e.id}>
                 <td >
                   <div className="user-row">
                     <img className="avatar" src={e.avatarURL}/>
@@ -31,7 +32,8 @@ const LeaderBoardPage = (props) => {
               </tr>
             )
           })
-        }
+        }</tbody>
+        
       </table>
 
       
