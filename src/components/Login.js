@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import login_img from "../assets/login_img.jpg";
 
 const Login = (props) => {
-  const aaa = () => {
+  const login = () => {
     console.log(props);
   };
 
@@ -21,7 +21,7 @@ const Login = (props) => {
           <label className="p-3 ">Password</label>
           <input className="w-100 input-login" placeholder="Password" />
         </div>
-        <div className="login-button " onClick={(e) => aaa()}>
+        <div className="login-button " onClick={(e) => login()}>
           Submit
         </div>
       </div>

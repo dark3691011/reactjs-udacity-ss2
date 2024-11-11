@@ -14,15 +14,16 @@ const LeaderBoardPage = (props) => {
           props.listUsers?.map(e => {
             return (
               <tr>
-                <td>
-                  <div>
-                    <img src={e.avatarURL}/>
-                    <div>{e.name}</div>
-                    <div>{e.id}</div>
+                <td >
+                  <div className="user-row">
+                    <img className="avatar" src={e.avatarURL}/>
+                   {e.name}
+                    <span>{e.id}</span>
+
                   </div>
                 </td>
                 <td>
-                  {e.answers?.length}
+                  {Object.keys(e.answers)?.length}
                 </td>
                 <td>
                 {e.questions?.length}
@@ -32,13 +33,15 @@ const LeaderBoardPage = (props) => {
           })
         }
       </table>
+
+      
     </div>
   );
 };
 
 const mapStateToProps = ({ authedUser, users, questions }) => {
 
-  const listUsers = Object.keys.map(e => {
+  const listUsers = Object.keys(users).map(e => {
     return users[e]
   })
   return {

@@ -1,3 +1,7 @@
+import { hideLoading, showLoading } from "react-redux-loading-bar";
+import { login } from "../utils/api";
+
+
 export const SET_AUTHED_USER = "SET_AUTHED_USER";
 
 export function setAuthedUser(id) {

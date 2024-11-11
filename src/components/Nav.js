@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Routes, Route, useLocation } from "react-router-dom";
+import { connect } from "react-redux";
 
 const Nav = ({user}) => {
   const location = useLocation();
@@ -17,9 +18,9 @@ const Nav = ({user}) => {
         </li>
       </ul>
       <div className="d-flex justify-center align-items-center me-2">
-        <div className="d-flex pe-10">
-          <img src={user.avatarURL} />
-          <p>{user.name}</p>
+        <div className="d-flex me-10 justify-center align-items-center">
+          <img className="avatar" src={user?.avatarURL} />
+          <p className="">{user?.name}</p>
         </div>
         <div>Logout</div>
       </div>
@@ -30,6 +31,9 @@ const Nav = ({user}) => {
 
 const mapStateToProps = ({ authedUser, users }) => {
   const user = users[authedUser];
+  console.log('ccc', user);
+  console.log(user)
+  console.log('cá', authedUser)
   return {
     user
   };

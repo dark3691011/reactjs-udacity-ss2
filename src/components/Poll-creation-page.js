@@ -28,23 +28,24 @@ const PollCreationPage = ({ dispatch }) => {
   };
 
   return (
-    <div>
-      <h2>Would you rather</h2>
+    <div >
+      <div className="poll-container">
+      <h1>Would you rather</h1>
       <p>Create your poll</p>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="input-group">
           <label>First option</label>
-          <input value={firstText} onChange={handleFirstTextChange} />
+          <input type="text" id="option-one" placeholder="Option One" value={firstText} onChange={handleFirstTextChange} />
         </div>
 
-        <div>
+        <div className="input-group">
           <label>Seconds option</label>
-          <input value={secondText} onChange={handleSecondTextChange} />
+          <input type="text" id="option-two" placeholder="Option Two" value={secondText} onChange={handleSecondTextChange} />
         </div>
 
         <button type="submit">Submit</button>
       </form>
-    </div>
+    </div></div>
   );
 };
 

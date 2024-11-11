@@ -3,6 +3,7 @@ import {
   _getQuestions,
   _saveQuestion,
   _saveQuestionAnswer,
+  _login
 } from './_DATA.js'
 
 export function getInitialData () {
