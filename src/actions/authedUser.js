@@ -14,7 +14,7 @@ export function setAuthedUser(id) {
 export function handleLogin({userName, password}) {
   return (dispatch) => {
     dispatch(showLoading());
-    login({userName, password}).then((res) => {
+    return login({userName, password}).then((res) => {
       if(res){
         dispatch(setAuthedUser(userName));
       }

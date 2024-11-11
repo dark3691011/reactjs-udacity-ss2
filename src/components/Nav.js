@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { handleLogout } from "../actions/authedUser";
 
-const Nav = ({user}) => {
+const Nav = ({user, dispatch}) => {
+  const navigate = useNavigate();
   const location = useLocation();
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(handleLogout());
+    navigate("/login");
+  }
   return (
     <nav className="nav d-flex justify-space">
       <ul className="ms-2">
@@ -20,9 +28,9 @@ const Nav = ({user}) => {
       <div className="d-flex justify-center align-items-center me-2">
         <div className="d-flex me-10 justify-center align-items-center">
           <img className="avatar" src={user?.avatarURL} />
-          <p className="">{user?.name}</p>
+          <p className="m-0">{user?.name}</p>
         </div>
-        <div>Logout</div>
+        <div onClick={logout}>Logout</div>
       </div>
     </nav>
   );
@@ -31,9 +39,6 @@ const Nav = ({user}) => {
 
 const mapStateToProps = ({ authedUser, users }) => {
   const user = users[authedUser];
-  console.log('ccc', user);
-  console.log(user)
-  console.log('cá', authedUser)
   return {
     user
   };
