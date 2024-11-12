@@ -48,15 +48,7 @@ const Home = (props) => {
 const mapStateToProps = ({ questions, users,authedUser }) => {
   console.log(questions);
   const user = users[authedUser];
-  const cc = Object.keys(questions).sort(
-    (a, b) => questions[b].timestamp - questions[a].timestamp
-  ).map(e => {
-    return {
-      ...e,
-      isNew: !user?.answers[e.id]
-    }
-  });
-  console.log('casdasdasd.',cc)
+  const cc = Object.keys(questions)
   return {
     questionIds: Object.keys(questions).sort(
       (a, b) => questions[b].timestamp - questions[a].timestamp
