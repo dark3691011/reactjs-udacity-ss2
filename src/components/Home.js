@@ -14,27 +14,58 @@ const Home = (props) => {
   return (
     <div>
       <div className="home-board">
+        <div>
         <div className="home-title">
           <h2>New Questions</h2>
         </div>
         <div className="home-items">
-          {props.questionIds.map((id) => (
+          {props.questionIds.filter(e => e.isNew).map((id) => (
             <li key={id}>
               <PollItem id={id} />
             </li>
           ))}
+        </div>
+
+        </div>
+        <div>
+        <div className="home-title">
+          <h2>Done</h2>
+        </div>
+        <div className="home-items">
+          {props.questionIds.filter(e => !e.isNew).map((id) => (
+            <li key={id}>
+              <PollItem id={id} />
+            </li>
+          ))}
+        </div>
+
         </div>
       </div>
     </div>
   );
 };
 
-const mapStateToProps = ({ questions }) => {
+const mapStateToProps = ({ questions, users,authedUser }) => {
   console.log(questions);
+  const user = users[authedUser];
+  const cc = Object.keys(questions).sort(
+    (a, b) => questions[b].timestamp - questions[a].timestamp
+  ).map(e => {
+    return {
+      ...e,
+      isNew: !user?.answers[e.id]
+    }
+  });
+  console.log('casdasdasd.',cc)
   return {
     questionIds: Object.keys(questions).sort(
       (a, b) => questions[b].timestamp - questions[a].timestamp
-    ),
+    ).map(e => {
+      return {
+        ...e,
+        isNew: !user?.answers[e.id]
+      }
+    })
   };
 };
 

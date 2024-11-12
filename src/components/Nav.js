@@ -18,11 +18,11 @@ const Nav = ({user, dispatch}) => {
         <li className={location.pathname === "/" ? "active-nav" : ""}>
           <Link to="/">Home</Link>
         </li>
-        <li className={location.pathname === "/board" ? "active-nav" : ""}>
-          <Link to="/board">Leaderboard</Link>
+        <li className={location.pathname === "/leaderboard" ? "active-nav" : ""}>
+          <Link to="/leaderboard">Leaderboard</Link>
         </li>
-        <li className={location.pathname === "/new" ? "active-nav" : ""}>
-          <Link to="/new">New</Link>
+        <li className={location.pathname === "/add" ? "active-nav" : ""}>
+          <Link to="/add">New</Link>
         </li>
       </ul>
       <div className="d-flex justify-center align-items-center me-2">
