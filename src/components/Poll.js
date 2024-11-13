@@ -10,7 +10,17 @@ const Poll = ({ authedUser, users, questions, dispatch }) => {
   let { optionOne, optionTwo } = question;
 
   useEffect(() => {
-    setQuestion(questions[id]);
+    const tmpQuestion = questions[id];
+    const isVoted = !!users[authedUser]?.answers[id];
+    if (isVoted) {
+      tmpQuestion.optionOne.voted =
+        tmpQuestion?.optionOne?.votes?.includes(authedUser);
+      tmpQuestion.optionTwo.voted =
+        tmpQuestion?.optionTwo?.votes?.includes(authedUser);
+    }
+    tmpQuestion.isVoted = isVoted;
+
+    setQuestion(tmpQuestion);
     setUser(users[questions[id]?.author]);
   }, []);
 
@@ -21,7 +31,11 @@ const Poll = ({ authedUser, users, questions, dispatch }) => {
         qid: question.id,
         answer,
       })
-    );
+    ).then((e) => {
+      const tmpQuestion = { ...question, isVoted: true };
+      tmpQuestion[answer].voted = true;
+      setQuestion(tmpQuestion);
+    });
   };
 
   return (
@@ -30,14 +44,26 @@ const Poll = ({ authedUser, users, questions, dispatch }) => {
       <img className="poll-img" src={user?.avatarURL} />
       <h2>Would you rather</h2>
       <div>
-        <div className="poll-option">
+        <div className={optionOne?.voted ? "poll-option voted" : "poll-option"}>
           <div>{optionOne?.text}</div>
-          <div onClick={() => vote("optionOne")}>Click</div>
+          <button
+            className={question?.isVoted ? `d-none` : ``}
+            disabled={question?.isVoted}
+            onClick={() => vote("optionOne")}
+          >
+            Click
+          </button>
         </div>
 
-        <div className="poll-option">
+        <div className={optionTwo?.voted ? "poll-option voted" : "poll-option"}>
           <div>{optionTwo?.text}</div>
-          <div onClick={() => vote("optionTwo")}>Click</div>
+          <button
+            className={question?.isVoted ? `d-none` : ``}
+            disabled={question?.isVoted}
+            onClick={() => vote("optionTwo")}
+          >
+            Click
+          </button>
         </div>
       </div>
     </div>

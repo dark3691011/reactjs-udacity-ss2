@@ -153,6 +153,10 @@ li {
   margin: 10px;
 }
 
+.d-none {
+  display: none;
+}
+
 .tweet {
   width: 100%;
   max-width: 590px;
@@ -287,6 +291,7 @@ li {
   flex-direction: column;
   border: 1px solid #ccc;
   border-radius: 10px;
+  margin-bottom: 20px;
 }
 
 .home-items {
@@ -327,27 +332,36 @@ li {
   align-items: center;
   flex-direction: column;
   margin: 10px;
-  width: 40%;
+  width: 50%;
   border: 1px solid #ccc;
   border-radius: 2px;
+}
+
+.voted {
+  background-color: #c7f4dd;
 }
 
 .poll-option > div:first-child {
   padding: 10px;
 }
-.poll-option > div:nth-child(2) {
+.poll-option > button:nth-child(2) {
   padding: 10px 0px 10px 0px;
   background-color: #7ebca5;
   width: 100%;
   text-align: center;
   color: #ffffff;
   font-weight: bold;
+  border: none;
 }
-.poll-option > div:nth-child(2):hover {
+.poll-option > button:nth-child(2):hover {
   cursor: pointer;
   background-color: #639381;
 }
-
+.poll-option > button:nth-child(2):disabled {
+  background-color: #cccccc; /* Gray color for disabled state */
+  color: #666666; /* Lighter color for text */
+  cursor: not-allowed; /* Shows a "not-allowed" cursor */
+}
 
 .table-container {
   width: 50%;
@@ -359,7 +373,8 @@ table {
   border-collapse: collapse;
   text-align: left;
 }
-th, td {
+th,
+td {
   padding: 10px;
   border: 1px solid #ddd;
 }
@@ -376,7 +391,6 @@ th {
   border-radius: 50%;
   margin-right: 10px;
 }
-
 
 .poll-container {
   text-align: center;
