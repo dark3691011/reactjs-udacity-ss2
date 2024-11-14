@@ -13,15 +13,17 @@ describe("saveQuestion", () => {
   });
 
   it("will return an error", async () => {
+    let error = "";
     try {
       await _saveQuestion({
         optionOneText: `optionOneText`,
         optionTwoText: `optionTwoText`,
       });
-    } catch (error) {
-      expect(error).toEqual(
-        "Please provide optionOneText, optionTwoText, and author"
-      );
+    } catch (err) {
+      error = err;
     }
+    expect(error).toEqual(
+      "Please provide optionOneText, optionTwoText, and author"
+    );
   });
 });
