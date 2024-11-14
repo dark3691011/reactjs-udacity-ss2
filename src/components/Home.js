@@ -50,7 +50,7 @@ const mapStateToProps = ({ questions, users, authedUser }) => {
   const user = users[authedUser];
   const listQuestion = Object.keys(questions)
     .map((key) => questions[key])
-    ?.sort((a, b) => a.timestamp - b.timestamp)
+    ?.sort((a, b) => b.timestamp - a.timestamp)
     ?.map((e) => ({ ...e, isNew: !user?.answers[e.id] }));
   return {
     questionIds: listQuestion.map((e) => {

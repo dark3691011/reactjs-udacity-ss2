@@ -434,3 +434,7 @@ input[type="text"] {
   cursor: not-allowed;
   margin-top: 20px;
 }
+
+.logout-button:hover {
+  cursor: pointer;
+}

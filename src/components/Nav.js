@@ -4,21 +4,23 @@ import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { handleLogout } from "../actions/authedUser";
 
-const Nav = ({user, dispatch}) => {
+const Nav = ({ user, dispatch }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const logout = (e) => {
     e.preventDefault();
     dispatch(handleLogout());
     navigate("/login");
-  }
+  };
   return (
     <nav className="nav d-flex justify-space">
       <ul className="ms-2">
         <li className={location.pathname === "/" ? "active-nav" : ""}>
           <Link to="/">Home</Link>
         </li>
-        <li className={location.pathname === "/leaderboard" ? "active-nav" : ""}>
+        <li
+          className={location.pathname === "/leaderboard" ? "active-nav" : ""}
+        >
           <Link to="/leaderboard">Leaderboard</Link>
         </li>
         <li className={location.pathname === "/add" ? "active-nav" : ""}>
@@ -30,17 +32,18 @@ const Nav = ({user, dispatch}) => {
           <img className="avatar" src={user?.avatarURL} />
           <p className="m-0">{user?.name}</p>
         </div>
-        <div onClick={logout}>Logout</div>
+        <div className="logout-button" onClick={logout}>
+          Logout
+        </div>
       </div>
     </nav>
   );
 };
 
-
 const mapStateToProps = ({ authedUser, users }) => {
   const user = users[authedUser];
   return {
-    user
+    user,
   };
 };
 
