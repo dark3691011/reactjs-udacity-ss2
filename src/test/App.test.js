@@ -4,16 +4,16 @@ import App from "../components/App";
 import reducer from "../reducers";
 import middleware from "../middleware";
 import { createStore } from "redux";
-import { BrowserRouter as Router } from "react-router-dom";
+import { MemoryRouter } from "react-router";
 
 const store = createStore(reducer, middleware);
 test("renders learn react link", () => {
   render(
-    <Provider store={store}>
-      <Router>
+    <MemoryRouter>
+      <Provider store={store}>
         <App />
-      </Router>
-    </Provider>
+      </Provider>
+    </MemoryRouter>
   );
   screen.debug();
 });

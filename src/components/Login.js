@@ -39,7 +39,11 @@ const Login = ({ dispatch }) => {
       <img src={login_img} />
       <div className="d-flex flex-column justify-center align-items-center w-100">
         <h3>Login</h3>
-        {error && <p style={{ color: "red" }}>{error}</p>}{" "}
+        {error && (
+          <p data-testid="error-message" style={{ color: "red" }}>
+            {error}
+          </p>
+        )}{" "}
         {/* Display error message */}
         <div className="d-flex flex-column justify-center align-items-center w-100">
           <label className="p-3">Username</label>
@@ -48,6 +52,7 @@ const Login = ({ dispatch }) => {
             onChange={handleUserNameChange}
             className="w-100 input-login"
             placeholder="Username"
+            data-testid="username"
           />
         </div>
         <div className="d-flex flex-column justify-center align-items-center w-100">
@@ -57,9 +62,14 @@ const Login = ({ dispatch }) => {
             onChange={handlePasswordChange}
             className="w-100 input-login"
             placeholder="Password"
+            data-testid="password"
           />
         </div>
-        <div className="login-button " onClick={(e) => login(e)}>
+        <div
+          data-testid="submit-button"
+          className="login-button "
+          onClick={(e) => login(e)}
+        >
           Submit
         </div>
       </div>
