@@ -36,7 +36,7 @@ const Login = ({ dispatch }) => {
   return (
     <div className="d-flex flex-column justify-center align-items-center ">
       <h1>Employee Polls</h1>
-      <img src={login_img} />
+      <img src={login_img} alt="login-img" />
       <div className="d-flex flex-column justify-center align-items-center w-100">
         <h3>Login</h3>
         {error && (

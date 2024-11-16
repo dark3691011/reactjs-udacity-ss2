@@ -1,16 +1,7 @@
-import { useNavigate, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PollItem from "./PollItem";
 
 const Home = (props) => {
-  const navigate = useNavigate();
-
-  const toParent = (e, id) => {
-    e.preventDefault();
-
-    navigate(`/tweet/${id}`);
-  };
-
   return (
     <div>
       <div className="home-board">
