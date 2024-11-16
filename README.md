@@ -11,3 +11,7 @@
 - Home page
 - Leader board page
 - Create poll page
+
+# Description
+
+- Auto login user `tylermcginnis` at first. You can get username and password from `src\utils\_DATA.js`
