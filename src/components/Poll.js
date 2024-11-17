@@ -49,6 +49,7 @@ const Poll = () => {
     ).then(() => {
       const tmpQuestion = { ...question, isVoted: true };
       tmpQuestion[answer].voted = true;
+      tmpQuestion[answer].votes.push(authedUser);
       setQuestion(tmpQuestion);
     });
   };
@@ -69,6 +70,19 @@ const Poll = () => {
       <h2>Would you rather</h2>
       <div>
         <div className={optionOne?.voted ? "poll-option voted" : "poll-option"}>
+          <div>
+            <div>Number of people who voted: {optionOne?.votes?.length}</div>
+            <div>
+              Percentage:
+              {Math.round(
+                (optionOne?.votes?.length /
+                  (optionOne?.votes?.length +
+                    question?.optionTwo?.votes?.length)) *
+                  100 || 0
+              )}
+              %
+            </div>
+          </div>
           <div>{optionOne?.text}</div>
           <button
             className={question?.isVoted ? `d-none` : ``}
@@ -80,6 +94,18 @@ const Poll = () => {
         </div>
 
         <div className={optionTwo?.voted ? "poll-option voted" : "poll-option"}>
+          <div>
+            <div>Number of people who voted: {optionTwo?.votes?.length}</div>
+            <div>
+              Percentage:
+              {Math.round(
+                (optionTwo?.votes?.length /
+                  (optionOne?.votes?.length + optionTwo?.votes?.length)) *
+                  100 || 0
+              )}
+              %
+            </div>
+          </div>
           <div>{optionTwo?.text}</div>
           <button
             className={question?.isVoted ? `d-none` : ``}

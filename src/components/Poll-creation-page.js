@@ -5,25 +5,33 @@ import { useNavigate } from "react-router-dom";
 
 const PollCreationPage = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch(); // Sử dụng useDispatch để lấy dispatch function từ Redux
+  const dispatch = useDispatch();
   const [firstText, setFirstText] = useState("");
   const [secondText, setSecondText] = useState("");
+  const [error, setError] = useState(""); // State to store error messages
 
   const handleFirstTextChange = (e) => {
-    const text = e.target.value;
-    setFirstText(text);
+    setFirstText(e.target.value);
+    if (error) setError(""); // Clear error when the user starts typing
   };
 
   const handleSecondTextChange = (e) => {
-    const text = e.target.value;
-    setSecondText(text);
+    setSecondText(e.target.value);
+    if (error) setError(""); // Clear error when the user starts typing
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Validation
+    if (!firstText.trim() || !secondText.trim()) {
+      setError("Both options are required.");
+      return;
+    }
+
     dispatch(handleAddQuestion(firstText, secondText));
 
+    // Clear fields and navigate back to the home page
     setFirstText("");
     setSecondText("");
     navigate("/");
@@ -45,7 +53,6 @@ const PollCreationPage = () => {
               onChange={handleFirstTextChange}
             />
           </div>
-
           <div className="input-group">
             <label>Second option</label>
             <input
@@ -56,7 +63,8 @@ const PollCreationPage = () => {
               onChange={handleSecondTextChange}
             />
           </div>
-
+          {error && <p className="error-message">{error}</p>}{" "}
+          {/* Display error if present */}
           <button type="submit">Submit</button>
         </form>
       </div>

@@ -342,9 +342,15 @@ li {
 }
 
 .poll-option > div:first-child {
+  width: 100%;
+  font-size: 15px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #ccc;
+}
+.poll-option > div:nth-child(2) {
   padding: 10px;
 }
-.poll-option > button:nth-child(2) {
+.poll-option > button:nth-child(3) {
   padding: 10px 0px 10px 0px;
   background-color: #7ebca5;
   width: 100%;
@@ -353,11 +359,11 @@ li {
   font-weight: bold;
   border: none;
 }
-.poll-option > button:nth-child(2):hover {
+.poll-option > button:nth-child(3):hover {
   cursor: pointer;
   background-color: #639381;
 }
-.poll-option > button:nth-child(2):disabled {
+.poll-option > button:nth-child(3):disabled {
   background-color: #cccccc; /* Gray color for disabled state */
   color: #666666; /* Lighter color for text */
   cursor: not-allowed; /* Shows a "not-allowed" cursor */
