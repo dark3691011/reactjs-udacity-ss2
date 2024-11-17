@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { handleSaveQuestionAnswer } from "../actions/shared";
+import img_404 from "../assets/img_404.jpg";
 import { useEffect, useState } from "react";
 
 const Poll = () => {
@@ -18,7 +19,12 @@ const Poll = () => {
 
   useEffect(() => {
     const tmpQuestion = questions[id];
-    if (!tmpQuestion) return;
+    if (!tmpQuestion) {
+      setQuestion({
+        notFound: true,
+      });
+      return;
+    }
 
     const isVoted = !!users[authedUser]?.answers[id];
     if (isVoted) {
@@ -47,7 +53,12 @@ const Poll = () => {
     });
   };
 
-  return (
+  return question?.notFound ? (
+    <div className="poll">
+      <h1>Question not found</h1>
+      <img alt="404" src={img_404} />
+    </div>
+  ) : (
     <div className="poll">
       <h2>Poll by {user?.name}</h2>
       <img

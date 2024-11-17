@@ -2,13 +2,20 @@ import { useSelector } from "react-redux";
 
 const LeaderBoardPage = () => {
   // Use useSelector to access Redux state directly
-  const { users, questions } = useSelector((state) => ({
+  const { users } = useSelector((state) => ({
     users: state.users,
-    questions: state.questions,
   }));
 
   // Map over the users to create a list for the leaderboard
-  const listUsers = Object.keys(users).map((userId) => users[userId]);
+  const listUsers = Object.keys(users)
+    .map((userId) => users[userId])
+    ?.sort((a, b) => {
+      const aLength =
+        (a?.questions?.length || 0) + (Object.keys(a?.answers)?.length || 0);
+      const bLength =
+        (b?.questions?.length || 0) + (Object.keys(b?.answers)?.length || 0);
+      return bLength - aLength;
+    });
 
   return (
     <div>
