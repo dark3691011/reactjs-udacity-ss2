@@ -1,10 +1,11 @@
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { handleAddQuestion } from "../actions/questions";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const PollCreationPage = ({ dispatch }) => {
+const PollCreationPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch(); // Sử dụng useDispatch để lấy dispatch function từ Redux
   const [firstText, setFirstText] = useState("");
   const [secondText, setSecondText] = useState("");
 
@@ -12,6 +13,7 @@ const PollCreationPage = ({ dispatch }) => {
     const text = e.target.value;
     setFirstText(text);
   };
+
   const handleSecondTextChange = (e) => {
     const text = e.target.value;
     setSecondText(text);
@@ -28,25 +30,38 @@ const PollCreationPage = ({ dispatch }) => {
   };
 
   return (
-    <div >
+    <div>
       <div className="poll-container">
-      <h1>Would you rather</h1>
-      <p>Create your poll</p>
-      <form onSubmit={handleSubmit}>
-        <div className="input-group">
-          <label>First option</label>
-          <input type="text" id="option-one" placeholder="Option One" value={firstText} onChange={handleFirstTextChange} />
-        </div>
+        <h1>Would you rather</h1>
+        <p>Create your poll</p>
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label>First option</label>
+            <input
+              type="text"
+              id="option-one"
+              placeholder="Option One"
+              value={firstText}
+              onChange={handleFirstTextChange}
+            />
+          </div>
 
-        <div className="input-group">
-          <label>Seconds option</label>
-          <input type="text" id="option-two" placeholder="Option Two" value={secondText} onChange={handleSecondTextChange} />
-        </div>
+          <div className="input-group">
+            <label>Second option</label>
+            <input
+              type="text"
+              id="option-two"
+              placeholder="Option Two"
+              value={secondText}
+              onChange={handleSecondTextChange}
+            />
+          </div>
 
-        <button type="submit">Submit</button>
-      </form>
-    </div></div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
   );
 };
 
-export default connect()(PollCreationPage);
+export default PollCreationPage;

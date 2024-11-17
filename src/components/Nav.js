@@ -1,17 +1,22 @@
 import { Link } from "react-router-dom";
-import { Routes, Route, useLocation } from "react-router-dom";
-import { connect } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { handleLogout } from "../actions/authedUser";
 
-const Nav = ({ user, dispatch }) => {
+const Nav = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  // Using useSelector to get the user data from Redux store
+  const user = useSelector(({ authedUser, users }) => users[authedUser]);
+
   const logout = (e) => {
     e.preventDefault();
     dispatch(handleLogout());
     navigate("/login");
   };
+
   return (
     <nav className="nav d-flex justify-space">
       <ul className="ms-2">
@@ -29,7 +34,7 @@ const Nav = ({ user, dispatch }) => {
       </ul>
       <div className="d-flex justify-center align-items-center me-2">
         <div className="d-flex me-10 justify-center align-items-center">
-          <img className="avatar" src={user?.avatarURL} />
+          <img className="avatar" src={user?.avatarURL} alt={user?.name} />
           <p className="m-0">{user?.name}</p>
         </div>
         <div className="logout-button" onClick={logout}>
@@ -40,11 +45,4 @@ const Nav = ({ user, dispatch }) => {
   );
 };
 
-const mapStateToProps = ({ authedUser, users }) => {
-  const user = users[authedUser];
-  return {
-    user,
-  };
-};
-
-export default connect(mapStateToProps)(Nav);
+export default Nav;

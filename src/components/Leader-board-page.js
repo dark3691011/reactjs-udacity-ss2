@@ -1,6 +1,15 @@
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
-const LeaderBoardPage = (props) => {
+const LeaderBoardPage = () => {
+  // Use useSelector to access Redux state directly
+  const { users, questions } = useSelector((state) => ({
+    users: state.users,
+    questions: state.questions,
+  }));
+
+  // Map over the users to create a list for the leaderboard
+  const listUsers = Object.keys(users).map((userId) => users[userId]);
+
   return (
     <div>
       <table>
@@ -13,35 +22,23 @@ const LeaderBoardPage = (props) => {
         </thead>
 
         <tbody>
-          {props.listUsers?.map((e) => {
-            return (
-              <tr key={e.id}>
-                <td>
-                  <div className="user-row">
-                    <img className="avatar" alt={e.id} src={e.avatarURL} />
-                    {e.name}
-                    <span>{e.id}</span>
-                  </div>
-                </td>
-                <td>{Object.keys(e.answers)?.length}</td>
-                <td>{e.questions?.length}</td>
-              </tr>
-            );
-          })}
+          {listUsers.map((e) => (
+            <tr key={e.id}>
+              <td>
+                <div className="user-row">
+                  <img className="avatar" alt={e.id} src={e.avatarURL} />
+                  {e.name}
+                  <span>{e.id}</span>
+                </div>
+              </td>
+              <td>{Object.keys(e.answers).length}</td>
+              <td>{e.questions.length}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
   );
 };
 
-const mapStateToProps = ({ authedUser, users, questions }) => {
-  const listUsers = Object.keys(users).map((e) => {
-    return users[e];
-  });
-  return {
-    authedUser,
-    listUsers,
-  };
-};
-
-export default connect(mapStateToProps)(LeaderBoardPage);
+export default LeaderBoardPage;

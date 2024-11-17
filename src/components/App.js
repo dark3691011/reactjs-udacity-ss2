@@ -6,24 +6,17 @@ import Login from "./Login";
 import Nav from "./Nav";
 import Home from "./Home";
 import Poll from "./Poll";
+import Protected from "./Protected";
 import PollCreationPage from "./Poll-creation-page";
 import LeaderBoardPage from "./Leader-board-page";
-import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 const App = (props) => {
   const location = useLocation();
-  const navigate = useNavigate();
   useEffect(() => {
     props.dispatch(handleInitialData());
   }, []);
-  useEffect(() => {
-    // Redirect to login if not authenticated and not already on the login page
-    if (!props.authedUser && location.pathname !== "/login") {
-      navigate("/login");
-    } else if (props.authedUser && location.pathname === "/login") {
-      navigate("/");
-    }
-  }, [props.authedUser, location.pathname, navigate]);
+  useEffect(() => {}, []);
 
   return (
     <Fragment>
@@ -32,10 +25,39 @@ const App = (props) => {
       <div className="container">
         {props.loading === true ? null : (
           <Routes>
-            <Route path="/" exact element={<Home />} />
-            <Route path="/poll/:id" element={<Poll />} />
-            <Route path="/add" element={<PollCreationPage />} />
-            <Route path="/leaderboard" element={<LeaderBoardPage />} />
+            <Route
+              path="/"
+              exact
+              element={
+                <Protected>
+                  <Home />
+                </Protected>
+              }
+            />
+            <Route
+              path="/poll/:id"
+              element={
+                <Protected>
+                  <Poll />
+                </Protected>
+              }
+            />
+            <Route
+              path="/add"
+              element={
+                <Protected>
+                  <PollCreationPage />
+                </Protected>
+              }
+            />
+            <Route
+              path="/leaderboard"
+              element={
+                <Protected>
+                  <LeaderBoardPage />
+                </Protected>
+              }
+            />
             <Route path="/login" element={<Login />} />
           </Routes>
         )}

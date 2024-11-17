@@ -1,29 +1,21 @@
-import { useNavigate, Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import moment from "moment";
 
-const PollItem = (props) => {
-  const { author, time } = props.question;
+const PollItem = ({ id }) => {
+  // Truy cập dữ liệu từ Redux store
+  const question = useSelector((state) => state.questions[id]);
+  const author = question?.author || "";
+  const time = moment(question?.timestamp).format("h:mm A | MM/DD/YYYY");
 
   return (
     <div className="poll-item">
       <p>{author}</p>
       <p>{time}</p>
 
-      <Link to={`poll/${props.id}`}>show</Link>
+      <Link to={`poll/${id}`}>Show</Link>
     </div>
   );
 };
 
-const mapStateToProps = ({ authedUser, users, questions }, { id }) => {
-  const question = questions[id];
-
-  question.time = moment(question.timestamp).format("h:mm A | MM/DD/YYYY");
-
-  return {
-    authedUser,
-    question,
-  };
-};
-
-export default connect(mapStateToProps)(PollItem);
+export default PollItem;
